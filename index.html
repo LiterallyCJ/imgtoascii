@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+    <div id="inputDiv">
+        <input type="file" name="picture" /> <br />
+        <button id="toggleSettings">Settings</button>
+
+        <div id="settingsDiv" class="greyBoxSmall" style="display: none;">
+           <h3>Settings:</h3>
+            <p>Play around and see what happens!</p>
+            
+            <label for="greyRamp">Grey ramp (Darkest to lightest):</label>
+            <input type="text" id="greyRamp" value="$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:,&#34^`'. "> <br />
+
+            <label for="imageMaxWidth">Maximum image width in characters:</label>
+            <input type="text" id="imageMaxWidth" value="80"> <br />
+
+            <label for="imageMaxHeight">Maximum image height in characters:</label>
+            <input type="text" id="imageMaxHeight" value="80"> <br />
+
+            <button id="saveSettings">Save settings</button> <br />
+
+            <br />
+        </div>
+    </div>
+
+    <div>
+        <div id="outputDiv" class="greyBox" style="display: none; float: left;">
+            <br />
+            <u><h2 style="font-family: sans-serif;">Picture as ASCII:</h2></u>
+            <pre id="ascii"></pre>
+            <button id="saveOutput">Save as txt file</button> <button id="toggleImages">Show more</button> <br />
+            <br />
+        </div>
+
+        <div id="originalDiv" class="greyBoxMid" style="width: auto; display: none;">
+            <u><h1>Original Image:</h1></u> <br />
+            <canvas id="original"></canvas>
+        </div>
+    </div>
+
+
+
+    <div id="showImages" class="greyBox" style="display: none; width: 100%;">
+        <div class="greyBoxLeft">
+            <p>Processed image:</p> <br />
+            <canvas id="preview"></canvas>            
+        </div>
+
+        <div class="greyBoxMid">
+            <p>Settings:</p> <br />
+            <p id="finalSettings"></p>
+        </div>
+    </div>
+</body>
+<footer>
+    <script src="./src/index.js"></script>
+
+    <script>
+        const settingsDiv = document.getElementById("settingsDiv");
+        const settingsToggle = document.getElementById("toggleSettings")
+
+        settingsToggle.onclick = _ => {
+            if (settingsDiv.style.display == "none") {
+                settingsDiv.style.display = "block";
+            } else {
+                settingsDiv.style.display = "none";
+            }
+        };
+
+        const extraDiv = document.getElementById("showImages");
+        const extraToggle = document.getElementById("toggleImages")
+
+        extraToggle.onclick = _ => {
+            if (extraDiv.style.display == "none") {
+                extraDiv.style.display = "block";
+            } else {
+                extraDiv.style.display = "none";
+            }
+        };
+
+        const download = (filename, text) => {
+            let tempElement = document.createElement("a");
+            tempElement.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            tempElement.setAttribute('download', filename);
+
+            tempElement.style.display = "none";
+            document.body.appendChild(tempElement);
+
+            tempElement.click();
+
+            document.body.removeChild(tempElement);
+        };
+
+        const saveButton = document.getElementById("saveOutput");
+
+        saveButton.onclick = _ => {
+            let asciiArt = document.getElementById("ascii").innerText;
+
+            let currentdate = new Date(); 
+            let datetime = currentdate.getDate() + "."
+                + (currentdate.getMonth()+1)  + "." 
+                + currentdate.getFullYear() + " "  
+                + currentdate.getHours() + " "  
+                + currentdate.getMinutes() + " " 
+                + currentdate.getSeconds();
+
+
+            download(`ASCII-ART ${datetime}.txt`, asciiArt);
+        };
+    </script>
+</footer>
+</html>
