@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Picture to ASCII art</title>
+    <link rel="icon" href="./images/image.png">
     <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
     <div id="inputDiv">
         <div class="greyBoxSmall" style="padding: 1em 16px;">
             <input type="file" name="picture" id="fileInput" style="margin-top: 0px;"/> 
-            <label for="fileInput">Input Image</label> <br />
+            <label for="fileInput" style="display: flex; align-items: center; justify-content: center;">
+                <img src="./images/Cloud Download.png" width="35px" height="35px" />
+                <p>  Input Image</p>
+            </label> <br />
             <button id="toggleSettings">Settings</button>
         </div>
 
@@ -26,7 +31,7 @@
             <input type="text" id="imageMaxWidth" value="80"> <br />
 
             <label for="imageMaxHeight">Maximum image height in characters:</label>
-            <input type="text" id="imageMaxHeight" value="80"> <br />
+            <input type="text" id="imageMaxHeight" value="80"> <br /> <br />
 
             <button id="saveSettings">Save settings</button> <br />
 
@@ -58,7 +63,7 @@
         </div>
 
         <div class="greyBoxMid">
-            <p>Settings:</p> <br />
+            <p>Extra:</p> <br />
             <p id="finalSettings"></p>
         </div>
     </div>

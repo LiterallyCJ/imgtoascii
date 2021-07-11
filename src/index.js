@@ -91,6 +91,9 @@ const imgToASCII = (grayScales, width) => {
     }, '');
 
     asciiImage.textContent = ascii;
+
+    document.getElementById("finalSettings").innerText = `Grey ramp: ${greyValues} \nMax Width: ${maxWidth} \nMax height: ${maxHeight} \nASCII length: ${ascii.length} \n(Also printed to console)`;
+
 };
 
 // Draw the clamped image
@@ -127,8 +130,6 @@ fileInput.onchange = (e) => {
 
     reader.readAsDataURL(file);
     fileInput.value = null;
-
-    document.getElementById("finalSettings").innerText = `Grey ramp: ${greyValues} \nMax Width: ${maxWidth} \nMax height: ${maxHeight} \n\n (Also printed to console)`;
 };
 
 
