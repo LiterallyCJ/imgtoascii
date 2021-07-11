@@ -8,10 +8,14 @@
 </head>
 <body>
     <div id="inputDiv">
-        <input type="file" name="picture" /> <br />
-        <button id="toggleSettings">Settings</button>
+        <div class="greyBoxSmall" style="padding: 1em 16px;">
+            <input type="file" name="picture" id="fileInput" style="margin-top: 0px;"/> 
+            <label for="fileInput">Input Image</label> <br />
+            <button id="toggleSettings">Settings</button>
+        </div>
 
-        <div id="settingsDiv" class="greyBoxSmall" style="display: none;">
+
+        <div id="settingsDiv" class="greyBoxSmall" style="display: none; font-size: 18px;">
            <h3>Settings:</h3>
             <p>Play around and see what happens!</p>
             
@@ -35,12 +39,12 @@
             <br />
             <u><h2 style="font-family: sans-serif;">Picture as ASCII:</h2></u>
             <pre id="ascii"></pre>
-            <button id="saveOutput">Save as txt file</button> <button id="toggleImages">Show more</button> <br />
+            <button id="saveOutput">Save as txt file</button> <button id="toggleImages">Show more</button> <a href="https://github.com/LiterallyCJ/imgtoascii">Github Page</a> <br />
             <br />
         </div>
 
         <div id="originalDiv" class="greyBoxMid" style="width: auto; display: none;">
-            <u><h1>Original Image:</h1></u> <br />
+            <u><h2 style="font-family: sans-serif;">Original image:</h2></u> <br />
             <canvas id="original"></canvas>
         </div>
     </div>
