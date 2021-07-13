@@ -132,7 +132,7 @@ fileInput.onchange = (e) => {
     fileInput.value = null;
 };
 
-
+// --------- BUTTONS ------------
 
 const imageGreyRamp = document.getElementById("greyRamp");
 const imageMaxWidth = document.getElementById("imageMaxWidth");
@@ -146,4 +146,59 @@ saveSettingsButton.onclick = _ => {
     maxHeight = parseInt(imageMaxHeight.value);
 
     console.log(`Grey ramp: ${greyValues} \nMax Width: ${maxWidth} \nMax height: ${maxHeight}`);
+};
+
+// Toggle settings menu
+const settingsDiv = document.getElementById("settingsDiv");
+const settingsToggle = document.getElementById("toggleSettings")
+
+settingsToggle.onclick = _ => {
+    if (settingsDiv.style.display == "none") {
+        settingsDiv.style.display = "block";
+    } else {
+        settingsDiv.style.display = "none";
+    }
+};
+
+// Toggle show extra menu
+const extraDiv = document.getElementById("showImages");
+const extraToggle = document.getElementById("toggleImages")
+
+extraToggle.onclick = _ => {
+    if (extraDiv.style.display == "none") {
+        extraDiv.style.display = "block";
+    } else {
+        extraDiv.style.display = "none";
+    }
+};
+
+// Download ASCII art
+const download = (filename, text) => {
+    let tempElement = document.createElement("a");
+    tempElement.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    tempElement.setAttribute('download', filename);
+
+    tempElement.style.display = "none";
+    document.body.appendChild(tempElement);
+
+    tempElement.click();
+
+    document.body.removeChild(tempElement);
+};
+
+const saveButton = document.getElementById("saveOutput");
+
+saveButton.onclick = _ => {
+    let asciiArt = document.getElementById("ascii").innerText;
+
+    let currentdate = new Date(); 
+    let datetime = currentdate.getDate() + "."
+        + (currentdate.getMonth()+1)  + "." 
+        + currentdate.getFullYear() + " "  
+        + currentdate.getHours() + " "  
+        + currentdate.getMinutes() + " " 
+        + currentdate.getSeconds();
+
+
+    download(`ASCII-ART ${datetime}.txt`, asciiArt);
 };
